@@ -14,7 +14,7 @@ public class Runner {
     public static void main(String args[]) {
         
         Connection connection1 = new Connection();
-        
+        /*
         connection1.setIp("127.0.0.1");
         connection1.setPort(20011);
         connection1.setId(0);
@@ -31,7 +31,7 @@ public class Runner {
         connection1.setKickspeedX(0);
         connection1.setSpinner(false);
         connection1.send();
-        /*
+        
         Connection connection2 = new Connection();
         
         connection2.setIp("127.0.0.1");
@@ -51,9 +51,16 @@ public class Runner {
         connection2.setSpinner(false);
         connection2.send();*/
         
-        //System.out.println("******** Connection 1 ********");
-        connection1.receive();
-        
+        while(true) {
+            System.out.println("******** Connection 1 ********");
+            connection1.receive();
+            try {
+                Thread.sleep(500);
+            }
+            catch(Exception e) {
+
+            }
+        }
         //System.out.println("******** Connection 2 ********");
         //connection2.receive();
     }

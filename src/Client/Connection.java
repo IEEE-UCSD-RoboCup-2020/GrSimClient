@@ -125,8 +125,11 @@ public class Connection {
 
             DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
             ds.receive(dp);
-            MessagesRobocupSslWrapper.SSL_WrapperPacket packet = MessagesRobocupSslWrapper
-                    .SSL_WrapperPacket.getDefaultInstance().parseFrom(trim(dp.getData()));
+            MessagesRobocupSslWrapper.SSL_WrapperPacket packet; 
+            /*packet = MessagesRobocupSslWrapper.SSL_WrapperPacket
+            .getDefaultInstance().parseFrom(trim(dp.getData()));*/
+
+            packet = MessagesRobocupSslWrapper.SSL_WrapperPacket.parseFrom(trim(dp.getData()));
             System.out.println(packet.toString());
         } catch (Exception e) {
             System.out.println(e);
