@@ -10,51 +10,36 @@ package Client;
  * @author kevinzhou
  */
 public class Runner {
-    
+
     public static void main(String args[]) {
-        
-        Connection connection1 = new Connection();
-        
-        connection1.setIp("127.0.0.1");
-        connection1.setPort(20011);
-        connection1.setId(0);
-        connection1.setWheel1(0);
-        connection1.setWheel2(0);
-        connection1.setWheel3(0);
-        connection1.setWheel4(0);
-        connection1.setVelX(3);
-        connection1.setVelY(0);
-        connection1.setVelZ(0);
-        connection1.setWheelSpeed(false);
-        connection1.setKickspeedZ(0);
-        connection1.setTeamYellow(true);
-        connection1.setKickspeedX(0);
-        connection1.setSpinner(false);
-        connection1.send();
-        /*
-        Connection connection2 = new Connection();
-        
-        connection2.setIp("127.0.0.1");
-        connection2.setPort(20011);
-        connection2.setId(1);
-        connection2.setWheel1(0);
-        connection2.setWheel2(0);
-        connection2.setWheel3(0);
-        connection2.setWheel4(0);
-        connection2.setVelX(3);
-        connection2.setVelY(0);
-        connection2.setVelZ(0);
-        connection2.setWheelSpeed(false);
-        connection2.setKickspeedZ(0);
-        connection2.setTeamYellow(false);
-        connection2.setKickspeedX(0);
-        connection2.setSpinner(false);
-        connection2.send();*/
-        
-        //System.out.println("******** Connection 1 ********");
-        connection1.receive();
-        
-        //System.out.println("******** Connection 2 ********");
-        //connection2.receive();
+        String simAddress = "127.0.0.1";
+        int commandListenPort = 20011;
+        String visionAddress = "224.5.23.2";
+        int visionPort = 10020;
+        int blueStatusPort = 30011;
+        int yellowStatusPort = 30012;
+        int botCount = 8;
+        ConnectionManager connectionManager = new ConnectionManager(simAddress, visionAddress, commandListenPort,
+                visionPort, blueStatusPort, yellowStatusPort, botCount);
+
+        boolean isYellow = true;
+        int id = 7;
+        float wheel1 = 10;
+        float wheel2 = 0;
+        float wheel3 = 0;
+        float wheel4 = 0;
+        float kickspeedx = 0;
+        float kickspeedz = 0;
+        float velX = 0;
+        float velY = 0;
+        float velZ = 0;
+        boolean spinner = false;
+        boolean useWheelSpeed = true;
+
+        connectionManager.setCommand(isYellow, id, wheel1, wheel2, wheel3, wheel4, kickspeedx, kickspeedz, velX, velY,
+                velZ, spinner, useWheelSpeed);
+        connectionManager.send();
+
+        connectionManager.receive();
     }
 }
